@@ -1,0 +1,9 @@
+.env
+config.json
+
+*.whl
+uv.lock
+
+__pycache__/
+.venv/
+venv/

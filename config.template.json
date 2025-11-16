@@ -1,0 +1,15 @@
+{
+    "project_id": "your_gcp_project_id",
+    "project_number": "your_gcp_project_number",
+    "bucket": "your_gcs_bucket_name_for_staging",
+    "reasoning_engine_agent_name": "display name of your agent engine",
+    "reasoning_engine_agent_sa": "agent engine runtime service account",
+    "reasoning_engine_location": "agent engine location, e.g., us-central1",
+    "reasoning_enigne_id": "agent engine numeric id ",
+    "datastore_id": "Datastore id which is associated to Gemini Enterprise app",
+    "agent_space_app": "Gemini Enterprise App id (not the display name)",
+    "agent_space_location": "us (or global, eu)",
+    "agent_space_agent_display_name": "Display name of your Gemini Enterprise Agent, e.g. 'my_travel_agent'",
+    "agent_space_agent_decription": "Long description of your Gemini Enterprise Agent, e.g. 'A smart travel assistant agent'",
+    "agent_space_agent_id": "Gemini Enterprise Agent id (not the Gemini Enterprise App id)"
+}
