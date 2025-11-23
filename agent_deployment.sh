@@ -34,10 +34,20 @@ deploy_agent() {
 
 update_agent() {
   check_variable_set PROJECT_ID REASONING_ENGINE_LOCATION REASONING_ENGINE_ID BUCKET REASONING_ENGINE_AGENT_SA
+  echo "Building wheel..."
   source .venv/bin/activate
   uv build --wheel --out-dir=.
-  echo "Updating agent in Agent Engine..."
-  python -m deployment.deploy --update --project_id $PROJECT_ID --bucket $BUCKET --location $REASONING_ENGINE_LOCATION --resource_id $REASONING_ENGINE --agent_sa $REASONING_ENGINE_AGENT_SA
+    whl_files=( *.whl )
+  if [ "${whl_files[0]}" = "*.whl" ]; then
+    echo "Error: No *.whl files found in the current directory." >&2
+    exit 1
+  fi
+  FIRST_WHL_FILE="${whl_files[0]}"
+  echo "Updating agent in Agent Engine with $FIRST_WHL_FILE ..."
+  python -m deployment.deploy --update --project_id "$PROJECT_ID" \
+    --bucket "$BUCKET" --location "$REASONING_ENGINE_LOCATION" \
+    --agent_name "$REASONING_ENGINE_AGENT_NAME" --agent_sa "$REASONING_ENGINE_AGENT_SA" \
+    --resource_id "$REASONING_ENGINE" --wheel_file "$FIRST_WHL_FILE"
   echo "Done."
 }
 
